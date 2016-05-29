@@ -38,7 +38,7 @@ function toggleType(type) {
 
 function getNext(sockets, socket) {
     var index = sockets.indexOf(socket);
-    if (index!=-1) return (index+1>=sockets.length) ? index+1 : 0;
+    if (index!=-1) return (index+1>=sockets.length) ? 0 : index+1;
     else console.log('BUG');
 }
 
@@ -53,11 +53,10 @@ io.sockets.on('connection', function(socket) {
 
     socket.on('word', function(data) {
         if (gameStarted || 1==1) {
-            if (data.type && data.word) {
+            if (data.type && data.word && (data.word.indexOf(socket.letters) == 0)) {
                 var type = toggleType(data.type);
                 var next = getNext(sockets, socket);
                 var letters = data.word.remove(socket.letters);
-                sockets[next].emit(next, {"letters": letters});
             } else console.log('INVALID');
         }
         console.log(data);
