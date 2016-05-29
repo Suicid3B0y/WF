@@ -45,9 +45,9 @@ io.sockets.on('connection', function(socket) {
         sockets[0].letters = "cat";
     }
 
-    socket.on('word', function(data)) {
+    socket.on('word', function(data) {
         console.log(data);
-    }
+    });
 
     socket.uuid = uuid.v4();
     console.log('user connected');
