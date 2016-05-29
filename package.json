@@ -1,0 +1,19 @@
+{
+  "name": "WF",
+  "version": "0.0.1",
+  "description": "",
+  "main": "wf.js",
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:Suicid3B0y/WF.git"
+  },
+  "author": "Thomas Viau <viau.thomas@gmail.com>",
+  "license": "CC-BY-NC-SA-4.0",
+  "dependencies": {
+    "express": "~4.13.3",
+    "sugar": "~1.4.1",
+    "socket.io": "~1.4.4",
+    "sqlite3": "~3.1.1",
+    "node-uuid": "~1.4.7"
+  }
+}
