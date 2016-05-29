@@ -36,16 +36,30 @@ function toggleType(type) {
     return (type=="begin") ? "end" : "begin";
 }
 
+function getNext(sockets, socket) {
+    var index = sockets.indexOf(socket);
+    if (index!=-1) return (index+1>=sockets.length) ? index+1 : 0;
+    else console.log('BUG');
+}
+
 io.sockets.on('connection', function(socket) {
     sockets.add(socket);
     if (!gameStarted && sockets.length>=2) {
         gameStarted=true;
-        sockets[0].emit('begin', {letters: "cat"});
+        sockets[0].emit('begin', {"letters": "cat"});
         sockets[0].type = "begin";
         sockets[0].letters = "cat";
     }
 
     socket.on('word', function(data) {
+        if (gameStarted || 1==1) {
+            if (data.type && data.word) {
+                var type = toggleType(data.type);
+                var next = getNext(sockets, socket);
+                var letters = data.word.remove(socket.letters);
+                sockets[next].emit(next, {"letters": letters});
+            } else console.log('INVALID');
+        }
         console.log(data);
     });
 
