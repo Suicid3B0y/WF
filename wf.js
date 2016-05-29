@@ -51,8 +51,4 @@ io.sockets.on('connection', function(socket) {
 
     socket.uuid = uuid.v4();
     console.log('user connected');
-
-    socket.on('word') {
-
-    }
 });
