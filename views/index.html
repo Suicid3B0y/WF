@@ -18,8 +18,16 @@
     <h1>Welcome to WF</h1>
     <script>
         var socket = io.connect();
+
+        socket.on('word', function(data) {
+            if (data.type && data.letters) {
+                var type = toggleType(data.type);
+                var letters = data.letters
+                if (type=="begin") $('#begin').val(letters).attr("disabled", true);
+                else (type=="end") $('#end').val(letters).attr("disabled", true);
+            } else console.log('INVALID');
+        });
     </script>
-    <input type="text" /><br>
-    <input type="text" /><br>
+    <input type="text" id="begin"/><input type="text" id="end"/><br>
     <input type="submit" value="yolo" />
 </body>

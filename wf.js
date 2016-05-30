@@ -46,7 +46,7 @@ io.sockets.on('connection', function(socket) {
     sockets.add(socket);
     if (!gameStarted && sockets.length>=2) {
         gameStarted=true;
-        sockets[0].emit('begin', {"letters": "cat"});
+        sockets[0].emit('word', {"type":"begin","letters": "cat"});
         sockets[0].type = "begin";
         sockets[0].letters = "cat";
     }
