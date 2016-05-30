@@ -20,6 +20,7 @@
         var socket = io.connect();
 
         socket.on('word', function(data) {
+            console.log(data);
             if (data.type && data.letters) {
                 var type = toggleType(data.type);
                 var letters = data.letters
