@@ -20,9 +20,8 @@
         var socket = io.connect();
 
         socket.on('word', function(data) {
-            console.log(data);
             if (data.type && data.letters) {
-                var type = toggleType(data.type);
+                var type = data.type;
                 var letters = data.letters
                 if (type=="begin") $('#begin').val(letters).attr("disabled", true);
                 else $('#end').val(letters).attr("disabled", true);
