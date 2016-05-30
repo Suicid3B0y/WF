@@ -44,7 +44,7 @@ function getNext(sockets, socket) {
 
 io.sockets.on('connection', function(socket) {
     sockets.add(socket);
-    if (!gameStarted && sockets.length>=2) {
+    if (!gameStarted && sockets.length>=1) {
         gameStarted=true;
         sockets[0].emit('word', {"type":"begin","letters": "cat"});
         sockets[0].type = "begin";
@@ -52,7 +52,7 @@ io.sockets.on('connection', function(socket) {
     }
 
     socket.on('word', function(data) {
-        if (gameStarted || 1==1) {
+        if (gameStarted) {
             if (data.type && data.word && (data.word.indexOf(socket.letters) == 0)) {
                 var type = toggleType(data.type);
                 var next = getNext(sockets, socket);
